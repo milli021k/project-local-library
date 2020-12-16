@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "live-server public/",
+    "start": "live-server --port=8090 public/",
     "test": "mocha tests/*.test.js"
   },
   "keywords": [],
