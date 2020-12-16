@@ -14,15 +14,16 @@ return  accounts.sort((firstvalue,lastvalue)=>firstvalue.name.last>lastvalue.nam
 
 function numberOfBorrows(account, books) {
   const {id} = account;
-let accumulator = 0;
-let ans =books.forEach(book =>  
-{
-if(book.borrows.find(person => person.id === id))
-{
-accumulator++;
-}
-});
-return  accumulator;
+  let accumulator = 0;
+    books.forEach(book =>  
+  {
+  if(book.borrows.find(person => person.id === id))
+   {
+  accumulator++;
+   }
+  });
+  return  accumulator;
+  
 }
 
 

@@ -14,18 +14,19 @@ function totalAccountsCount(accounts) {
 function booksBorrowedCount(books) {
     
   
-   return    books.filter(book => book.borrows.some(borrow => borrow.returned === false)).reduce((acc, value) => acc +=1, 0);
+   return  books.filter(book => book.borrows.some(borrow => borrow.returned === false)).reduce((acc, value) => acc +=1, 0);
  
 }
 // 
 function mostCommonGenres(books) {
   
-  let geners = books.map(book=> book.genre)
-let answer =[];
+
+  const geners = books.map(book=> book.genre)
+const answer =[];
 let temp =[];
 for(i=0;i<geners.length;i++)
 {
-res =  { name : geners[i], count: books.filter(book=> 
+let res =  { name : geners[i], count: books.filter(book=> 
  book.genre===geners[i]).reduce((acc,val)=>acc+1,0)}
  
  answer.push(res);
@@ -41,53 +42,45 @@ if(final.length==0)
 }
 for(let i=1;i<answer.length;i++)
 {
-  let res =final .some(val => val.name ===answer[i].name)
+  let res =final.some(val => val.name ===answer[i].name)
   if(!res)
   {
  final.push(answer[i]);   
   }
 }
   // sorts arry
-let sorted = final.sort((a,b)=>b.count-a.count).slice(0,5);
-
-return sorted;  
+return final.sort((a,b)=>b.count-a.count).slice(0,5);
+  
 }
 
 function mostPopularBooks(books) {
   
-  
-let value ={};
-let result =[];
-let res = books.forEach(book=>
+  let result =[];
+  books.forEach(book=>
   {
-   value=  { name : book.title, count: book.borrows.length} 
+ let   value=  { name : book.title, count: book.borrows.length} 
    result.push(value)
   });
 
 
- let sorted = result.sort((a,b)=>b.count-a.count).slice(0,5);
+ return result.sort((a,b)=>b.count-a.count).slice(0,5);
 
-  return sorted;
 }
 
 
 
 function mostPopularAuthors(books, authors) {
- let result = [];
-let val ={};
-
-let res = authors.forEach (author=>
+  let result = [];
+authors.forEach (author=>
   {
- val ={name:`${author.name.first} ${author.name.last}`, count: books.filter(book => author.id ===book.authorId ).reduce((acc,val)=>acc+=val.borrows.length,0)};
+ let value ={name:`${author.name.first} ${author.name.last}`, count: books.filter(book => author.id ===book.authorId ).reduce((acc,val)=>acc+=val.borrows.length,0)};
 
-result.push(val);
+result.push(value);
 });
 
-
-let sorted =result.sort((a,b)=>b.count-a.count).slice(0,5);
- 
-return sorted  
-}
+return result.sort((a,b)=>b.count-a.count).slice(0,5);
+  
+  }
 
 module.exports = {
   totalBooksCount,
