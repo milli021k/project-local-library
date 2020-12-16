@@ -28,7 +28,7 @@ return  accumulator;
 
 
 
-function getBooksPossessedByAccount({id}, books, authors) {
+function booksInPossession({id}, books, authors) {
 
 
 let borrowedBooks = books.filter(book => book.borrows.some(borrow => (borrow.id === id && borrow.returned === false)));
@@ -46,5 +46,5 @@ module.exports = {
 findAccountById,
 sortAccountsByLastName,
 numberOfBorrows,
-getBooksPossessedByAccount,
+booksInPossession,
 };

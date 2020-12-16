@@ -18,7 +18,7 @@ function booksBorrowedCount(books) {
  
 }
 // 
-function getMostCommonGenres(books) {
+function mostCommonGenres(books) {
   
   let geners = books.map(book=> book.genre)
 let answer =[];
@@ -53,7 +53,7 @@ let sorted = final.sort((a,b)=>b.count-a.count).slice(0,5);
 return sorted;  
 }
 
-function getMostPopularBooks(books) {
+function mostPopularBooks(books) {
   
   
 let value ={};
@@ -72,7 +72,7 @@ let res = books.forEach(book=>
 
 
 
-function getMostPopularAuthors(books, authors) {
+function mostPopularAuthors(books, authors) {
  let result = [];
 let val ={};
 
@@ -93,7 +93,7 @@ module.exports = {
   totalBooksCount,
   totalAccountsCount,
   booksBorrowedCount,
-  getMostCommonGenres,
-  getMostPopularBooks,
-  getMostPopularAuthors,
+  mostCommonGenres,
+  mostPopularBooks,
+  mostPopularAuthors,
 };
