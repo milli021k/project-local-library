@@ -20,18 +20,26 @@ function partitionBooksByBorrowedStatus(books) {
   
 }
 
+
+
 function getBorrowersForBook(book, accounts) {
- 
-let borrowersInfo = book.borrows;
-let result = accounts.filter(account=> borrowersInfo.some(info => info.id ===account.id));
-
-let updatedAccount = result.forEach(account=>
-  account["returned"] = true);
-
-  return result ;
+  let borrowers=[]; 
+  let borrowersInfo = book.borrows;
+  accounts.forEach(account=>
+   {
+  borrowersInfo.forEach(transaction =>{
+    if(account.id===transaction.id)
+      {
+       let result={...account}
+       result["returned"]=transaction.returned ;
+      borrowers.push(result);
+      }
+  })
+  });                     
+                       
+          return borrowers.slice(0,10);
+  }
   
-}
-
 module.exports = {
   findAuthorById,
   findBookById,
