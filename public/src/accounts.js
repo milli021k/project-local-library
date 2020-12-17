@@ -1,27 +1,23 @@
-function findAccountById(accounts, id) {
-
-  return  accounts.find(account=> account.id === id);
-  
-}
+const findAccountById = (accounts, id)=>accounts.find(account=> account.id === id);
 
 
-function sortAccountsByLastName(accounts) {
-
-return  accounts.sort((firstvalue,lastvalue)=>firstvalue.name.last>lastvalue.name.last?1:-1);
- 
-}
+const sortAccountsByLastName = (accounts)=>accounts.sort((accountA,accountB)=>accountA.name.last>accountB.name.last?1:-1);
 
 
 function numberOfBorrows(account, books) {
   const {id} = account;
   let accumulator = 0;
-    books.forEach(book =>  
+   
+  books.forEach(book =>  
   {
-  if(book.borrows.find(person => person.id === id))
+  if(book.borrows.find(transaction => transaction.id === id))
    {
   accumulator++;
    }
   });
+
+
+  
   return  accumulator;
   
 }

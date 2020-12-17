@@ -1,14 +1,9 @@
-function findAuthorById(authors, id) {
-
-  return  authors.find(author => author.id===id);
+const findAuthorById = (authors, id)=>authors.find(author => author.id===id);
   
-}
 
-function findBookById(books, id) {
+
+const findBookById=(books, id) =>books.find(book => book.id===id);
   
-  return books.find(book => book.id===id);
-   
-}
 
 function partitionBooksByBorrowedStatus(books) {
   
@@ -16,7 +11,11 @@ function partitionBooksByBorrowedStatus(books) {
   
   let borrowedBooks = books.filter(book => book.borrows.some(borrow => (borrow.returned === false)));
   
-  return [borrowedBooks,availableBooks];
+  let result = [borrowedBooks,availableBooks]
+  
+  // used ternary operators 
+  // if the book never been rented return empty array
+  return (result.length>0)?result:[]; 
   
 }
 
@@ -26,9 +25,10 @@ function getBorrowersForBook(book, accounts) {
   let borrowers=[]; 
   let borrowersInfo = book.borrows;
   accounts.forEach(account=>
-   {
+   { 
+     const  {id } = account;
   borrowersInfo.forEach(transaction =>{
-    if(account.id===transaction.id)
+    if(id===transaction.id)
       {
        let result={...account}
        result["returned"]=transaction.returned ;

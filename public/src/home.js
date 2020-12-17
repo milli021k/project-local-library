@@ -1,13 +1,9 @@
-function totalBooksCount(books) {
-  return  books.reduce((acc, value) => acc +=1, 0);
-  
-   
-}
+const totalBooksCount = books=>
+   books.reduce((acc, value) => acc +=1, 0);
 
-function totalAccountsCount(accounts) {
-  
-  return accounts.reduce ((acc,val)=> acc+1,0) 
-}
+
+const totalAccountsCount =accounts=>
+   accounts.reduce ((acc,val)=> acc+1,0) 
 
 
 
@@ -49,38 +45,54 @@ for(let i=1;i<answer.length;i++)
   }
 }
   // sorts arry
-return final.sort((a,b)=>b.count-a.count).slice(0,5);
-  
+return  sortHelper(final);
+
 }
 
 function mostPopularBooks(books) {
   
   let result =[];
-  books.forEach(book=>
+  books.reduce((acc,book)=>
   {
- let   value=  { name : book.title, count: book.borrows.length} 
+    let name = book.title
+    let count = book.borrows.length;
+    // object shorthand
+ let   value=  { name , count} 
    result.push(value)
-  });
+  },result);
 
 
- return result.sort((a,b)=>b.count-a.count).slice(0,5);
+ return  sortHelper(result);
 
 }
 
 
 
+
+
 function mostPopularAuthors(books, authors) {
+
   let result = [];
 authors.forEach (author=>
   {
- let value ={name:`${author.name.first} ${author.name.last}`, count: books.filter(book => author.id ===book.authorId ).reduce((acc,val)=>acc+=val.borrows.length,0)};
+    const {name:{first,last}} = author;
+    let name = `${first} ${last}`;
 
-result.push(value);
-});
+    count =books.filter(book => author.id ===book.authorId ).reduce((acc,val)=>acc+=val.borrows.length,0);
 
-return result.sort((a,b)=>b.count-a.count).slice(0,5);
-  
+    let value ={name, count}
+    // object shorthand
+    result.push(value);
+  });
+         return  sortHelper(result);
   }
+
+function sortHelper(input)
+{
+  return  input.sort((firstvalue,nextvalue)=>nextvalue.count-firstvalue.count).slice(0,5);
+}
+
+
 
 module.exports = {
   totalBooksCount,
@@ -89,4 +101,5 @@ module.exports = {
   mostCommonGenres,
   mostPopularBooks,
   mostPopularAuthors,
+  sortHelper
 };
