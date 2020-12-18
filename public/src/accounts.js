@@ -15,9 +15,7 @@ function numberOfBorrows(account, books) {
   accumulator++;
    }
   });
-
-
-  
+ 
   return  accumulator;
   
 }
