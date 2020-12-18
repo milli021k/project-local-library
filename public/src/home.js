@@ -1,9 +1,9 @@
 const totalBooksCount = books=>
-   books.reduce((acc, value) => acc +=1, 0);
+   books.reduce((acc) => acc +=1, 0);
 
 
 const totalAccountsCount =accounts=>
-   accounts.reduce ((acc,val)=> acc+1,0) 
+   accounts.reduce ((acc)=> acc+1,0) 
 
 
 

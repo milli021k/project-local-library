@@ -23,16 +23,16 @@ function numberOfBorrows(account, books) {
 
 
 
-
 function booksInPossession({id}, books, authors) {
 
+  let hasBook = book=>book.borrows.some(borrow => (borrow.id === id && !borrow.returned ));
 
-let borrowedBooks = books.filter(book => book.borrows.some(borrow => (borrow.id === id && borrow.returned === false)));
+  let borrowedBooks = books.filter(book => hasBook(book));
 
- return borrowedBooks.reduce((acc, book) => { 
+  return borrowedBooks.reduce((acc, book) => { 
     book.author = authors.find(author => author.id === book.authorId); 
      acc.push(book);
- return acc;  }, []);
+  return acc;  }, []);
 }
 
 
