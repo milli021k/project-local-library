@@ -1,3 +1,4 @@
+// arrow function
 const findAccountById = (accounts, id)=>accounts.find(account=> account.id === id);
 
 
