@@ -8,20 +8,17 @@ function booksBorrowedCount(books)
    return borowedCount;
 }
 
-
+// used map to populate genersArray
 function mostCommonGenres(books) 
- {   
-    let genre = {}
-    const result = [];
-    for (const book of books) 
-      {
-        genre[book.genre] ? genre[book.genre] += 1 : genre[book.genre] = 1;
-      }
-    for (key in genre) 
-      {
-        result.push({ name: key, count: genre [key]});
-      }
-    return  sortHelper(result);
+{  
+  const allGenres = [];
+  books.reduce((accumulator, book) => {
+    const genresArray = books.filter(book1 => book1.genre === book.genre).map(book2 => book2.genre);
+    allGenres.push({ name: genresArray[0], count: genresArray.length });
+    return accumulator;
+  }, 0);
+  const result = allGenres.filter((genre, index, self) => index === self.findIndex((temp) => temp.name === genre.name && temp.count === genre.count));
+  return sortHelper(result);
 }
 
 
